@@ -3,10 +3,13 @@ var app = express()
 var path = require('path')
 var port = 3000
 
-app.get('/', function(req, res){
+app.get('/index', function(req, res){
     res.sendFile(path.join(__dirname+"/views/index.html"))
 })
+app.get('/fake-page', (req, res) => {
 
+    res.redirect(301, '/index');
+  });
 
 app.use(express.static(__dirname+"/views"))
 
