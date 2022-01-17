@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Document</title>
+</head>
+<body>
+    <table id="newTable" style="border: 2px solid black">
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type = "text/javascript">
+    $.ajax({
+       url: 'http://localhost:3000/todo.json',
+       dataType: 'json',
+       success: function(data)
+       {
+            for(var i=0; i<data.length; i++)
+            {
+                var row = $('<tr><td>' + data[i].userId + '</td><td>' + data[i].id + '</td><td>' + data[i].title + '</td><td>' + data[i].completed + '</td></tr>');
+                $('#newTable').append(row);
+            }
+       },
+       error: function(jqXHR, textStatus, errorThrown){
+           alert('Error:' + textStatus + ' - ' + errorThrown);
+       }
+    });
+</script>
+</table>
+</body>
+</html>
