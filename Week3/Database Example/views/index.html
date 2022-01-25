@@ -8,19 +8,19 @@
 </head>
 <body>
     <div id="container">
-        <h1>Enter Your Favorite Food!</h1>
+        <h1>Enter your favorite food.</h1>
         <nav>
             <a href="#">Enter Food</a>
             <a href="foodlist.html">Look at Food</a>
         </nav>
-        <form action="/saveFoodEntry">
-        <span id="err" style="color: red;"></span>
-        <br>
-        <label for="food">Enter your food here!</label>
-        <br>
-        <input type="text" name="food" id="FoodEntry">
-        <br>
-        <button type="submit">Submit Food</button>
+        <form action="/saveFoodEntry" method="post">
+            <span id="err" style="color: red;"></span>
+            <br>
+            <label for="food">Enter your food here.</label>
+            <br>
+            <input type="text" name="food" id="FoodEntry">
+            <br>
+            <button type="submit">Submit Food</button>
         </form>
     </div>
 </body>

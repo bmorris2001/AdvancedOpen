@@ -13,7 +13,7 @@ app.use(express.json())
 mongoose.connect('mongodb://localhost:27017/foodEntries',{
     useNewURLParser:true
 }).then(()=>{
-    console.log("Connected to the DataBase")
+    console.log("Connected to Database")
 }).catch((err)=>{
     console.log(err)
 })
@@ -22,31 +22,35 @@ require('./models/Food')
 
 var Food = mongoose.model('food')
 
-app.post('/saveFoodEntry',(req,res)=>{
+//saves the data
+app.post('/saveFoodEntry', (req,res)=>{
     console.log(req.body)
 
     //create new entry for food
     new Food(req.body).save().then(()=>{
-        console.log('Data Saved')
-        res.redirect('foodlist.html')
+        console.log("Data Saved")
+        res.redirect("foodlist.html")
     })
 })
 
-app.get('/getData',(req,res)=>{
+//reads the data
+app.get('/getData', (req,res)=>{
     Food.find().then((food)=>{
         res.json({food})
     })
 })
 
-app.post('/deleteFood',(req,res)=>{
-    console.log("Food Deleted" + req.body._id + " " + req.body.food)
+//delete the data
+app.post('/deleteFood', (req,res)=>{
+    console.log("Food deleted " + req.body._id + " " + req.body.food)
     Food.findByIdAndDelete(req.body._id).exec()
-    res.redirect('foodlist.html')
+    res.redirect("foodlist.html")
 })
 
 
-//Basic code for saving data
 
+
+//Basic code saving some data
 /*var Food = mongoose.model('Food',{typeOfFood:String})
 
 var food = new Food({typeOfFood:"Pizza"})
@@ -56,7 +60,8 @@ food.save().then(()=>{
 })*/
 
 
-app.use(express.static(__dirname+'/views'))
+
+app.use(express.static(__dirname+"/views"))
 app.listen(3000,()=>{
-    console.log("Listening on port 3000")
+    console.log('listening on port 3000')
 })
