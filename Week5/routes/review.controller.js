@@ -1,7 +1,7 @@
 let Review = require('./review.model')
 let debug = require('debug')('demo:review')
 
-const sendJSONResponse = (res, status, content) =>{
+const sendJSONresponse = (res, status, content) =>{
     res.status(status)
     res.json(content)
 }
@@ -10,36 +10,33 @@ module.exports.readReviewsAll = (req,res)=>{
     debug('Getting all reviews')
 
     Review.find().exec().then(results =>{
-        sendJSONResponse(res,200,results)
-    }).catch(err =>{
-        sendJSONResponse(res,404,err)
+        sendJSONresponse(res, 200,results)
+    }).catch(err => {
+        sendJSONresponse(res, 404, err)
     })
 }
 
-
 module.exports.reviewReadOne = (req,res)=>{
+    
     if(req.params && req.params.reviewid){
-        debug("Getting a single review with id = ", req.params.reviewid)
+        debug("Getting a single review with id =", req.params.reviewid)
 
         Review.findById(req.params.reviewid).exec().then(results =>{
-            sendJSONResponse(res,200,results)
-        }).catch(err =>{
-            sendJSONResponse(res,404,{
+            sendJSONresponse(res, 200,results)
+        }).catch(err => {
+            sendJSONresponse(res, 404,{
                 "message":"Review not found"
             })
         })
     }else{
-        sendJSONResponse(res,404,{
-            "message":"Review id not found"
+        sendJSONresponse(res, 404,{
+            "message":"reviewi not found"
         })
-    }
-
-    
+    }   
 }
 
-
 module.exports.reviewCreate = (req,res)=>{
-    debug('Creating review', req.body)
+    debug('Creating Review ', req.body)
 
     Review.create({
         author:req.body.author,
@@ -47,49 +44,48 @@ module.exports.reviewCreate = (req,res)=>{
         reviewText:req.body.reviewText
     }).then(dataSaved =>{
         debug(dataSaved)
-        sendJSONResponse(res, 201, dataSaved)
-    }).catch(err=>{
+        sendJSONresponse(res, 201, dataSaved)
+    }).catch(err =>{
         debug(err)
-        sendJSONResponse(res,404,err)
+        sendJSONresponse(res, 404, err)
     })
 }
 
 module.exports.reviewUpdateOne = (req,res)=>{
     if(!req.params.reviewid){
-        sendJSONResponse(res,404,{
-            "message":"Review id not found reviewid required"
+        sendJSONresponse(res, 404, {
+            "message":"Not found... reviewid required"
         })
-        return 
+        return
     }
-    Review.findById(req.params.reviewid).exec().then(reviewData =>{
+
+    Review.findById(req.params.reviewid).exec()
+    .then(reviewData =>{
         reviewData.author = req.body.author;
         reviewData.rating = req.body.rating;
         reviewData.reviewText = req.body.reviewText;
         return reviewData.save()
     }).then(data =>{
-        sendJSONResponse(res,200,data)
+        sendJSONresponse(res,200,data)
     }).catch(err=>{
-        sendJSONResponse(res,400,err)
+        sendJSONresponse(res, 400, err)
     })
-
 }
-
 
 module.exports.reviewDeleteOne = (req,res)=>{
     if(!req.params.reviewid){
-        sendJSONResponse(res,404,{
-            "message":"Review id not found reviewid required"
+        sendJSONresponse(res, 404, {
+            "message":"Not found... reviewid required"
         })
-        return 
+        return
     }
-    Review.findByIdAndRemove(req.params.reviewid).exec().then(reviewData =>{
-        debug("Review ID " + req.params.reviewid + " deleted")
-        debug(reviewData)
-        sendJSONResponse(res,204,null)
+
+    Review.findByIdAndRemove(req.params.reviewid).exec()
+    .then(reviewData =>{
+       debug("Review ID " + req.params.reviewid + " deleted")
+       debug(reviewData)
+        sendJSONresponse(res,204, null)
     }).catch(err=>{
-        sendJSONResponse(res,400,err)
+        sendJSONresponse(res, 400, err)
     })
-
 }
-
-
