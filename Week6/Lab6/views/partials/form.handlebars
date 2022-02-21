@@ -1,0 +1,44 @@
+<div>
+    <form action="{{action}}" method="{{method}}">
+
+        <fieldset>
+
+            <h1>{{title}}</h1>
+
+            <div>
+                <label>Contact Name</label>
+                <div>
+                    <span uk-icon="icon: user"></span>
+                    <input type="text" name="name" placeholder="Brandon M" value="{{name}}">
+                </div>
+            </div>
+
+            <div>
+                <label>Phone Number</label>
+                <div>
+                    <span uk-icon="icon: receiver"></span>
+                    <input type="tel" name="number" placeholder="(401) 999-9999" value="{{number}}">
+                </div>
+            </div>
+
+            <div>
+                <label>Phone Type</label>
+                <div>
+                    <select name="type">
+                        {{#select type}}
+                            <option value="home">Home</option>
+                            <option value="mobile">Mobile</option>
+                            <option value="work">Work</option>
+                        {{/select}}
+                    </select>
+                </div>
+            </div>
+
+        </fieldset>
+
+        <div>
+            <button>Submit</button>
+        </div>
+    </form>
+</div>
+

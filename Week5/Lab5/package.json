@@ -1,13 +1,11 @@
 {
-  "name": "assignment-5",
+  "name": "lab5",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index",
-    "dev": "gulp"
+    "start": "node index"
   },
-  "author": "Jonathan Doolittle",
+  "author": "Brandon Morris",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.1",
@@ -19,10 +17,5 @@
     "mongodb": "^4.3.1",
     "mongoose": "^6.2.1",
     "pug": "^3.0.2"
-  },
-  "devDependencies": {
-    "browser-sync": "^2.27.7",
-    "gulp": "^4.0.2",
-    "gulp-nodemon": "^2.5.0"
   }
 }
