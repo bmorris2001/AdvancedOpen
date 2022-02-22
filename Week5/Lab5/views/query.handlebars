@@ -1,8 +1,7 @@
 <div>
-    <h1>Query Sandbox</h1>
+    
 
     <div class="field">
-        <label class="label" for="verb">Verb/HTTP Method</label>
         <div class="select">
             <select name="verb">
                 <option value="GET">GET</option>
@@ -170,9 +169,9 @@
             cache:'default'
         }
 
-        // This assignment only uses GETs
+        
         if(['POST', 'PUT'].indexOf(httpVerbSelector.val()) > -1){
-            //myInit.body = JSON.stringify(data)
+           
         }
 
         fetch(new Request(url, myInit)).then(response => {

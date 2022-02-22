@@ -45,31 +45,6 @@ routeDelete.post(async (req, res) => {
 });
 
 
-// UPDATE ROUTES
-
-const routeUpdate = router.route('/update/:id');
-
-routeUpdate.get(async (req, res) => {
-    
-    const search = { _id: ObjectId(req.params.id) };
-
-    
-    let employee = await EmployeeController.findEmployeeById(search);
-
-    if (employee) {
-        
-        employee.action = `/update/${req.params.id}`;
-        
-        res.render('update', employee);
-    }
-});
-
-routeUpdate.post(async (req, res) => {
-    
-    const search = { _id: ObjectId(req.params.id) };
-    EmployeeController.updateEmployee(search, req.body).then(res.redirect('../view'));
-});
-
 
 /// VIEW ROUTES
 
@@ -88,11 +63,6 @@ routeView.get(async (req, res) => {
 
 
 // MISC ROUTES
-
-router.route('/error').get((req, res) => {
-    
-    res.render('error');
-});
 
 router.route('/query').get((req, res) => {
     res.render('query');

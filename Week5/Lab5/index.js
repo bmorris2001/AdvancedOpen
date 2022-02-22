@@ -20,14 +20,7 @@ const hbs = require('express-handlebars').create({
                 new RegExp(' value=\"' + selected + '\"'),
                 '$& selected="selected"');
         },
-        /**
-         * Returns the days since a given date
-         * @param date The date to count from
-         * @return {number} The number of days since the given date
-         */
-        daysSince: (date) => {
-            return Math.floor((new Date().getTime() - new Date(date).getTime()) / (1000 * 3600 * 24));
-        },
+        
         /**
          * Formats the given value as USD
          * @param value The numeric value
